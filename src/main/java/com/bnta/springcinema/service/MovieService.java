@@ -26,7 +26,7 @@ public class MovieService {
 
 
     public List<Movie> getAllMovies(){
-        return InterfaceMovies.findAll();
+        return movieRepository.findAll();
     }
 
 
@@ -34,7 +34,20 @@ public class MovieService {
         return movieRepository.save(newMovie);
     }
 
-    public List<Movie> getMovieById(int id){
+    // include code to update movie for PUT
+    public Movie updateMovie(Movie movie){
+        movieRepository.save(movie);
+        return movie;
+    }
+
+
+
+    public Movie getMovieById(int id){
         return movieRepository.findById(id).get();
     }
+
+    public void deleteMovie(int id) {
+        movieRepository.delete(movieRepository.findById(id).get());
+    }
+
 }
